@@ -1,7 +1,7 @@
 # Variable for Stack
 MAX_STACK_ELEMENT = 100      # Maximum number of stack element allowed
 myStack = []
-
+START_OF_EXPRESSION = True
 """CONSTANT FOR OPERATORDICT"""
 Associativity = 0
 Precedence = 1

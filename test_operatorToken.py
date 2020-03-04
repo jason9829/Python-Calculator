@@ -1,5 +1,5 @@
 import unittest
-import operatorToken as oT
+import operatorToken as operatorT
 import myGlobal as dictConstant
 
 
@@ -11,7 +11,7 @@ class TestCaseGetOperatorTokenInfo(unittest.TestCase):
         Precedence: WEAK = 10
         """
         # getOperatorTokenInfo(operatorStr)
-        tokenInfo = oT.getOperatorTokenInfo("INFIX_PLUS")
+        tokenInfo = operatorT.getOperatorTokenInfo("INFIX_PLUS")
         self.assertEqual(dictConstant.LEFT_TO_RIGHT, tokenInfo[dictConstant.Associativity])
         self.assertEqual(dictConstant.WEAK, tokenInfo[dictConstant.Precedence])
 
@@ -22,13 +22,13 @@ class TestCaseGetOperatorTokenInfo(unittest.TestCase):
         Precedence: STRONG = 11
         """
         # getOperatorTokenInfo(operatorStr)
-        tokenInfo = oT.getOperatorTokenInfo("PREFIX_MINUS")
+        tokenInfo = operatorT.getOperatorTokenInfo("PREFIX_MINUS")
         self.assertEqual(dictConstant.RIGHT_TO_LEFT, tokenInfo[dictConstant.Associativity])
         self.assertEqual(dictConstant.STRONG, tokenInfo[dictConstant.Precedence])
 
     def test_getOperatorTokenInfo_given_invalid_operator_expect_None(self):
         # getOperatorTokenInfo(operatorStr)
-        tokenInfo = oT.getOperatorTokenInfo("!")
+        tokenInfo = operatorT.getOperatorTokenInfo("!")
         self.assertEqual(None, tokenInfo)
 
 
