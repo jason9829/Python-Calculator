@@ -12,6 +12,7 @@
       <list>
         <option value="Python Script" />
         <option value="Python Unit Test" />
+        <option value="Setup Script" />
       </list>
     </option>
   </component>
@@ -29,50 +30,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_stringInterpreter.TestCaseMoveStr">
-    <configuration name="shuntingYard" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="shuntingYard" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/shuntingYard.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="stringInterpreter" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="shuntingYard" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/stringInterpreter.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Unittests for test_stringInterpreter.TestCaseMoveStr" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_shuntingYard.TestCaseIsExpressionValid">
+    <configuration name="Unittests for test_shuntingYard.TestCaseIsExpressionValid" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="shuntingYard" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -82,11 +41,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_stringInterpreter.TestCaseMoveStr&quot;" />
+      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseIsExpressionValid&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests in test_shuntingYard.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_shuntingYard.TestCaseIsExpressionValid.test_a_isExpressionValid_given_1a_plus_1_expect_exception_raised" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="shuntingYard" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -96,7 +55,35 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_shuntingYard.py&quot;" />
+      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseIsExpressionValid.test_a_isExpressionValid_given_1a_plus_1_expect_exception_raised&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for test_stringInterpreter.TestCaseIsAlphaInStr" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="shuntingYard" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_stringInterpreter.TestCaseIsAlphaInStr&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in shuntingYard" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="shuntingYard" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
@@ -116,11 +103,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for test_stringInterpreter.TestCaseMoveStr" />
-        <item itemvalue="Python.shuntingYard" />
-        <item itemvalue="Python tests.Unittests in test_shuntingYard.py" />
+        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseIsExpressionValid" />
+        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseIsExpressionValid.test_a_isExpressionValid_given_1a_plus_1_expect_exception_raised" />
         <item itemvalue="Python tests.Unittests in test_stringInterpreter.py" />
-        <item itemvalue="Python.stringInterpreter" />
+        <item itemvalue="Python tests.Unittests in shuntingYard" />
+        <item itemvalue="Python tests.Unittests for test_stringInterpreter.TestCaseIsAlphaInStr" />
       </list>
     </recent_temporary>
   </component>
@@ -138,50 +125,50 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1344" height="173" key="GridCell.Tab.0.bottom" timestamp="1583314118784">
+    <state width="1344" height="173" key="GridCell.Tab.0.bottom" timestamp="1583381070272">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="173" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583314118784" />
-    <state width="1344" height="173" key="GridCell.Tab.0.center" timestamp="1583314118784">
+    <state width="1344" height="173" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583381070272" />
+    <state width="1344" height="173" key="GridCell.Tab.0.center" timestamp="1583381070272">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="173" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1583314118784" />
-    <state width="1344" height="173" key="GridCell.Tab.0.left" timestamp="1583314118784">
+    <state width="1344" height="173" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1583381070272" />
+    <state width="1344" height="173" key="GridCell.Tab.0.left" timestamp="1583381070272">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="173" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1583314118784" />
-    <state width="1344" height="173" key="GridCell.Tab.0.right" timestamp="1583314118784">
+    <state width="1344" height="173" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1583381070272" />
+    <state width="1344" height="173" key="GridCell.Tab.0.right" timestamp="1583381070272">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="173" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583314118784" />
-    <state width="1344" height="223" key="GridCell.Tab.1.bottom" timestamp="1583314018551">
+    <state width="1344" height="173" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1583381070272" />
+    <state width="1344" height="223" key="GridCell.Tab.1.bottom" timestamp="1583380908556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583314018551" />
-    <state width="1344" height="223" key="GridCell.Tab.1.center" timestamp="1583314018551">
+    <state width="1344" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1583380908556" />
+    <state width="1344" height="223" key="GridCell.Tab.1.center" timestamp="1583380908555">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1583314018551" />
-    <state width="1344" height="223" key="GridCell.Tab.1.left" timestamp="1583314018551">
+    <state width="1344" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1583380908555" />
+    <state width="1344" height="223" key="GridCell.Tab.1.left" timestamp="1583380908555">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1583314018551" />
-    <state width="1344" height="223" key="GridCell.Tab.1.right" timestamp="1583314018551">
+    <state width="1344" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1583380908555" />
+    <state width="1344" height="223" key="GridCell.Tab.1.right" timestamp="1583380908556">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1344" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1583314018551" />
+    <state width="1344" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1583380908556" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1583292958223">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1583292958223" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1583293071300">
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1583369397190">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583293071300" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583309352877">
+    <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583369397190" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583370718304">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583309352877" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1583370718304" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -197,9 +184,19 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_operatorToken.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test_shuntingYard.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/shuntingYard.py</url>
-          <line>37</line>
-          <option name="timeStamp" value="11" />
+          <line>22</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -92,6 +92,16 @@ class TestCaseStringToNumber(unittest.TestCase):
             print(e)
 
 
+class TestCaseFormatNumber(unittest.TestCase):
+    def test_formatNumber_given_4_expect_4(self):
+        # formatNumber(num)
+        self.assertEqual(4, sI.formatNumber(4))
+
+    def test_formatNumber_given_60point5_expect_60point5(self):
+        # formatNumber(num)
+        self.assertEqual(60.5, sI.formatNumber(60.5))
+
+
 class TestCaseMoveStr(unittest.TestCase):
     def test_a_moveStr_given_123456789_and_2_expect_3456789(self):
         # moveStr(expression, iteration)
@@ -100,6 +110,24 @@ class TestCaseMoveStr(unittest.TestCase):
     def test_a_moveStr_given_abcd1234_and_4_expect_1234(self):
         # moveStr(expression, iteration)
         self.assertEqual("1234", sI.moveStr("abcd1234", 4))
+
+
+class TestCaseIsAlphaInStr(unittest.TestCase):
+    def test_a_isAlphaInStr_given_abcdqef_expect_true(self):
+        # isAlphaInStr(expression)
+        self.assertEqual(True, sI.isAlphaInStr("abcdqef"))
+
+    def test_b_isAlphaInStr_given_avc1234_expect_true(self):
+        # isAlphaInStr(expression)
+        self.assertEqual(True, sI.isAlphaInStr("avc1234"))
+
+    def test_c_isAlphaInStr_given_111_expect_false(self):
+        # isAlphaInStr(expression)
+        self.assertEqual(False, sI.isAlphaInStr("111"))
+
+    def test_d_isAlphaInStr_given_12point12_expect_false(self):
+        # isAlphaInStr(expression)
+        self.assertEqual(False, sI.isAlphaInStr("12.12"))
 
 
 if __name__ == '__main__':

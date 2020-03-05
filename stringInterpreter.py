@@ -14,6 +14,7 @@ def isFloat(expression):
         return False
 
 
+# WARNING: Will not work for decimal point value
 # Desc: Add space between characters of the string
 #       (will not add if there are already space between character)
 # Param: Expression to add spaces
@@ -28,6 +29,22 @@ def addSpaceBetweenCharacters(expression):
             expressionCopy = insertCharactersInString(' ', expressionCopy, elementNo+tempNo)    # Update the new string
             tempNo += 1
             elementNo += 1
+        expressionLength -= 1
+    return expressionCopy
+
+
+# Desc: Add space between characters of math expression
+#       (will not add if there are already space between character)
+# Param: Math expression to add spaces
+# Retval: Math expression with spaces between characters
+def addSpaceBetweenMathCharacters(expression):
+    FIRST_CHARACTER_FLAG = True
+    elementNo = 0
+    tempNo = 1
+    expressionCopy = expression
+    expressionLength = len(expression)
+    while expressionLength != 0:    # Last character no need to check/ add
+
         expressionLength -= 1
     return expressionCopy
 
@@ -84,6 +101,17 @@ def stringToNumber(expression):
         raise ValueError("Exception: stringToNumber() received invalid parameter to be convert.")
 
 
+# Desc: Remove the decimal point if there's 0 after decimal point, etc 1.0-> 1
+# Param: Number to be formatted
+# Retval: Formatted number
+# Ref: https://stackoverflow.com/questions/38282697/how-can-i-remove-0-of-float-numbers
+def formatNumber(num):
+    if num % 1 == 0:  # Example: 4.0 % 1 = 0, 4.1 % 1 = 0.1
+        return int(num)
+    else:
+        return num
+
+
 # Desc: Move String to right (like moving pointer in c)
 # Param: String, iteration to move the str
 # Retval: Moved String
@@ -98,7 +126,19 @@ def moveStr(expression, iteration):
     return newExpression
 
 
+# Desc: Check whether there's alphabet in a str
+# Param: String
+# Retval: True/ False
+# Ref: https://stackoverflow.com/questions/15558392/how-to-check-if-character-in-string-is-a-letter-python
+def isAlphaInStr(expression):
+    for char in expression:
+        if char.isalpha():
+            return True
+
+    return False
+
+
 # Desc: Extract token from string
 # Param: String
 # Retval: Token
-#def getTokenFromStr(expression):
+# def getTokenFromStr(expression):

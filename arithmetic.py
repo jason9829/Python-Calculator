@@ -45,5 +45,5 @@ def calculationBasedOnOperator(num1, num2, operator):
     try:
         return arithmeticFuntionDict[operator](num1, num2)
         #                             [Key]    (param1, param2)
-    except KeyError:
-        raise KeyError("Error: calculationBasedOnOperator() invalid operator received.")
+    except ValueError:
+        raise ValueError("Error: calculationBasedOnOperator() invalid operator received.")

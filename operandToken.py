@@ -1,11 +1,33 @@
+import stringInterpreter as sI
 
 
-# Desc: Remove the decimal point if there's 0 after decimal point, etc 1.0-> 1
-# Param: Number to be formatted
-# Retval: Formatted number
-# Ref: https://stackoverflow.com/questions/38282697/how-can-i-remove-0-of-float-numbers
-def formatNumber(num):
-    if num % 1 == 0:  # Example: 4.0 % 1 = 0, 4.1 % 1 = 0.1
-        return int(num)
+class OperandToken:
+    def __init__(self):
+        self.num = None
+        self.type = None
+
+
+# Desc: Determine whether the number is int/ float
+# Param: Number (value), won't raise error if it's not number (caller need to raise the exception)
+# Retval: int or float
+def getNumberType(number):
+    if type(number) == int:
+        return "int"
     else:
-        return num
+        return "float"
+
+
+# Desc: Generate operand token
+# Param: Operand in str
+# Retval: Operand token
+def createOperandToken(operandStr):
+    if not sI.isNumber(operandStr):  # Verify whether the parameter str is number
+        # Raise exception if parameter is not number
+        raise ValueError("Error: createOperandToken() received invalid operand str.")
+    # Convert str to number, then format the numbe (remove decimal if it's int)
+    token = OperandToken()
+    token.num = sI.formatNumber(sI.stringToNumber(operandStr))
+    token.type = getNumberType(token.num)
+    return token
+
+

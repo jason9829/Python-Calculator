@@ -5,21 +5,24 @@ import operandToken as operandT
 import operatorToken as operatorT
 
 
+# NOTE: The expression pass in are expected to have spaces between numbers and operators.
+#       Will try to fix this bug soon. 5 Mar 2020
 # Def: Calculate the expression using shunting yard algorithm with stack
 # Param: operandStack, operatorStack, expression
 # Retval: Calculated final answer
 def shuntingYard(operandStack, operatorStack, expression):
-    expression = sI.addSpaceBetweenCharacters(expression)  # Add space between character for splitting
-    expressionList = expression.split()
-    expressionListLength = len(expressionList)
-    listIndex = 0
+    if sI.isAlphaInStr(expression): # If the
+        #expression = sI.addSpaceBetweenCharacters(expression)  # Add space between character for splitting
+        expressionList = expression.split()
+        expressionListLength = len(expressionList)
+        listIndex = 0
 
     while expressionListLength != 0:
         currentToken = expressionList[listIndex]
         if sI.isNumber(currentToken):  # formatNumber(number)
-            st.pushStack(operandStack, operandT.formatNumber(sI.stringToNumber(currentToken)))
+            st.pushStack(operandStack, operandT.createOperandToken(sI.formatNumber(sI.stringToNumber(currentToken))))
         elif sI.isOperator(currentToken):  # Raise exception when non operator detected
-            st.pushStack(operatorStack, currentToken)
+            st.pushStack(operatorStack, operatorT.createOperatorToken(currentToken))
         listIndex += 1
         expressionListLength -= 1
 
@@ -31,8 +34,11 @@ def shuntingYard(operandStack, operatorStack, expression):
     return st.popStack(operandStack)
 
 
-operatorStack = []
-operandStack = []
-
-print( shuntingYard(operandStack, operatorStack, "1+2.1"))
-print( shuntingYard(operandStack, operatorStack, "1+ 157"))
+# Desc: Verify the expression before processing it
+# Param: Expression
+# Retval: True/ raise exception (false)
+def isExpressionValid(expression):
+    if sI.isAlphaInStr(expression):
+        raise ValueError("Error: isExpressionValid() received invalid expression.")
+    else:
+        return True
