@@ -97,5 +97,52 @@ class TestCaseCreateOperatorToken(unittest.TestCase):
             print(e)
 
 
+class TestCaseGetOperatorSignAffixStr(unittest.TestCase):
+    def test_a_getPlusSignOperatorStr_given_prev_None_next_minus_expect_PREFIX_PLUS(self):
+        # getPlusSignOperatorStr(previousChar, nextChar)
+        self.assertEqual("PREFIX_PLUS", operatorT.getPlusSignOperatorStr(None, "-"))
+
+    def test_b_getPlusSignOperatorStr_given_prev_1_next_4_expect_INFIX_PLUS(self):
+        # getPlusSignOperatorStr(previousChar, nextChar)
+        self.assertEqual("INFIX_PLUS", operatorT.getPlusSignOperatorStr("1", "4"))
+
+    def test_c_getPlusSignOperatorStr_given_prev_None_next_1_expect_PREFIX_PLUS(self):
+        # getPlusSignOperatorStr(previousChar, nextChar)
+        self.assertEqual("PREFIX_PLUS", operatorT.getPlusSignOperatorStr(None, "1"))
+    # Didn't test for getMinusSignOperatorStr() because the code are same as getPlusSignOperatorStr()
+
+    def test_d_getOperatorStrAffix_given_prev_None_next_1_minus_expect_PREFIX_MINUS(self):
+        # getOperatorStrAffix(previousChar, nextChar, operatorSymbol)
+        self.assertEqual("PREFIX_MINUS", operatorT.getOperatorStrAffix(None, "1", "-"))
+
+    def test_e_getOperatorStrAffix_given_prev_1_next_6point11_plus_expect_INFIX_PLUS(self):
+        # getOperatorStrAffix(previousChar, nextChar, operatorSymbol)
+        self.assertEqual("INFIX_PLUS", operatorT.getOperatorStrAffix("1", "6.11", "+"))
+
+    def test_f_getOperatorStrAffix_given_prev_None_next_None_multiply_expect_INFIX_MULTIPLY(self):
+        # getOperatorStrAffix(previousChar, nextChar, operatorSymbol)
+        self.assertEqual("INFIX_MULTIPLY", operatorT.getOperatorStrAffix(None, None, "*"))
+
+    def test_g_getOperatorStrAffix_given_prev_10_next_6point11_divide_expect_INFIX_DIVIDE(self):
+        # getOperatorStrAffix(previousChar, nextChar, operatorSymbol)
+        self.assertEqual("INFIX_DIVIDE", operatorT.getOperatorStrAffix("10", "6.11", "/"))
+
+    def test_h_getOperatorStrAffix_given_prev_None_next_None_open_bracket_expect_OPEN_BRACKET(self):
+        # getOperatorStrAffix(previousChar, nextChar, operatorSymbol)
+        self.assertEqual("OPEN_BRACKET", operatorT.getOperatorStrAffix(None, None, "("))
+
+    def test_i_getOperatorStrAffix_given_prev_10_next_6point11_close_bracket_expect_CLOSE_BRACKET(self):
+        # getOperatorStrAffix(previousChar, nextChar, operatorSymbol)
+        self.assertEqual("CLOSE_BRACKET", operatorT.getOperatorStrAffix("10", "6.11", ")"))
+
+    def test_j_getAffixFromOperatorStr_given_PREFIX_MINUS_expect_PREFIX(self):
+        # getAffixFromOperatorStr(operatorStr)
+        self.assertEqual("PREFIX", operatorT.getAffixFromOperatorStr("PREFIX_PLUS"))
+
+    def test_k_getAffixFromOperatorStr_given_INFIX_DIVIDE_expect_INFIX(self):
+        # getAffixFromOperatorStr(operatorStr)
+        self.assertEqual("INFIX", operatorT.getAffixFromOperatorStr("INFIX_DIVIDE"))
+
+
 if __name__ == '__main__':
     unittest.main()

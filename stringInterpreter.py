@@ -1,17 +1,31 @@
 
 
-# Desc: Detect whether it' float
-# Param: String
-# Retval: True/ False
-def isFloat(expression):
-    # If expression is num. equal float , Example: 1.
-    if len(expression) > 1:
-        if (expression[0].isdigit()) & (expression[1] == '.'):
-            return True
+# NOTE: The float str acquisition terminate by operator symbol or end of str
+#       Caller can use isAlphaInStr before passing the parameter
+# Desc: Extract float in str
+# Param: Str
+# Retval: Float in str
+def extractFloatStr(expression):
+    FIRST_DECIMAL_DETECTED = False
+    END_FLAG = False
+    newExpression = ""
+    expressionLen = len(expression)
+    indexNo = 0
+
+    while not END_FLAG: # Toggle when the terminating condition meet (return function call)
+        if expressionLen != 0:  # When it's not the end of str
+            if expression[indexNo].isdigit():   # If it's digit
+                newExpression += expression[indexNo]    # Copy to new object
+            elif (expression[indexNo] == '.') & (not FIRST_DECIMAL_DETECTED):   # Decimal point detected, and if
+                FIRST_DECIMAL_DETECTED = True                                   # no decimal point detected before
+                newExpression += expression[indexNo]
+            elif isOperator(expression[indexNo]):   # If operating symbol found, terminate the process and return
+                END_FLAG = True
+            expressionLen -= 1
+            indexNo += 1
         else:
-            return False
-    else:
-        return False
+            END_FLAG = True
+    return newExpression
 
 
 # WARNING: Will not work for decimal point value
@@ -25,8 +39,8 @@ def addSpaceBetweenCharacters(expression):
     expressionCopy = expression
     expressionLength = len(expression)
     while expressionLength != 1:    # Last character no need to check/ add
-        if (expression[elementNo+1] != ' ') & (not isFloat(expression[elementNo] + expression[elementNo + 1])):
-            expressionCopy = insertCharactersInString(' ', expressionCopy, elementNo+tempNo)    # Update the new string
+        if (expression[elementNo +1] != ' ') & (not isFloat(expression[elementNo] + expression[elementNo + 1])):
+            expressionCopy = insertCharactersInString(' ', expressionCopy, elementNo +tempNo)    # Update the new string
             tempNo += 1
             elementNo += 1
         expressionLength -= 1
@@ -74,11 +88,11 @@ def isNumber(expression):
 # Retval: True/ False
 def isOperator(expression):
     operatorList = ('+', '-', '*', '/', '(', ')')
-    if len(expression) > 1:  # Raise exception when string is received
-        raise ValueError("Exception: isOperator() received string as input parameter instead of character.")
-    elif not type(expression) == str:  # Raise exception when non character is received
-        raise ValueError("Exception: isOperator() received non character as input parameter instead of character.")
-    else:  # Find whether parameter is match with operatorList, if yes then return True, else raise exception
+    if len(expression) > 1:  # Return false when string is received
+        return False
+    elif not type(expression) == str:  # Return false when non character is received
+        return False
+    else:  # Find whether parameter is match with operatorList, if yes then return True, else return false
         index = 0
         listLength = len(operatorList)
         while listLength != 0:
@@ -88,7 +102,7 @@ def isOperator(expression):
                 index += 1
                 listLength -= 1
 
-        raise ValueError("Exception: isOperator() received invalid operator.")
+        return False
 
 
 # Desc: Convert String to Number
@@ -110,6 +124,18 @@ def formatNumber(num):
         return int(num)
     else:
         return num
+
+
+# Desc: Detect whether it' float
+# Param: String
+# Retval: True/ False
+def isFloat(expression):
+    floatStr = extractFloatStr(expression)
+    Num = formatNumber(stringToNumber(floatStr))
+    if type(Num) == int:
+        return False
+    else:
+        return True
 
 
 # Desc: Move String to right (like moving pointer in c)

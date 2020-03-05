@@ -2,14 +2,18 @@ import unittest
 import stringInterpreter as sI
 
 
-class TestCaseIsFloat(unittest.TestCase):
-    def test_a_isFloat_given_5point1_expect_True(self):
-        # isFloat(expression)
-        self.assertEqual(True, sI.isFloat("5.1"))
+class TestCaseExtractFloatStr(unittest.TestCase):
+    def test_a_extractFloatStr_2point12_expect_return_2point12(self):
+        # extractFloatStr(expression)
+        self.assertEqual("2.12", sI.extractFloatStr("2.12"))
 
-    def test_b_isFloat_given_2_expect_false(self):
-        # isFloat(expression)
-        self.assertEqual(False, sI.isFloat("2"))
+    def test_a_extractFloatStr_5point55_plus_expect_return_5point55(self):
+        # extractFloatStr(expression)
+        self.assertEqual("5.55", sI.extractFloatStr("5.55+"))
+
+    def test_a_extractFloatStr_15point12345678_plus_minus_divide_expect_return_15point12345678(self):
+        # extractFloatStr(expression)
+        self.assertEqual("15.12345678", sI.extractFloatStr("15.12345678 + -/"))
 
 
 class TestCaseInsertCharactersInString(unittest.TestCase):
@@ -27,10 +31,11 @@ class TestCaseAddSpaceBetweenCharacters(unittest.TestCase):
         # addSpaceBetweenCharacters(expression)
         self.assertEqual("1 2 3", sI.addSpaceBetweenCharacters("12 3"))
 
+"""
     def test_b_addSpaceBetweenCharacters_given_1plus2divide3point3_without_space_expect_spaces_between_characters(self):
         # addSpaceBetweenCharacters(expression)
         self.assertEqual("1 + 2 / 3.3", sI.addSpaceBetweenCharacters("1+2/3.3"))
-
+"""
 
 class TestCaseIsNumber(unittest.TestCase):
     def test_a_isNumber_given_1112_expect_true(self):
@@ -55,26 +60,18 @@ class TestCaseIsOperator(unittest.TestCase):
         # isOperator(expression)
         self.assertEqual(True, sI.isOperator('('))
 
-    def test_c_isOperator_given_minus_divide_sign_expect_exception_raised(self):
+    def test_c_isOperator_given_minus_divide_sign_expect_exception(self):
         try:
             self.assertEqual(False, sI.isOperator("-/"))
 
         except Exception as e:
             print(e)
 
-    def test_d_isOperator_given_1_expect_exception_raised(self):
-        try:
-            self.assertEqual(False, sI.isOperator('1'))
+    def test_d_isOperator_given_1_expect_exception_false(self):
+        self.assertEqual(False, sI.isOperator('1'))
 
-        except Exception as e:
-            print(e)
-
-    def test_e_isOperator_given_comma_expect_exception_raised(self):
-        try:
-            self.assertEqual(False, sI.isOperator(','))
-
-        except Exception as e:
-            print(e)
+    def test_e_isOperator_given_comma_expect_exception_false(self):
+        self.assertEqual(False, sI.isOperator(','))
 
 
 class TestCaseStringToNumber(unittest.TestCase):
@@ -100,6 +97,16 @@ class TestCaseFormatNumber(unittest.TestCase):
     def test_formatNumber_given_60point5_expect_60point5(self):
         # formatNumber(num)
         self.assertEqual(60.5, sI.formatNumber(60.5))
+
+
+class TestCaseIsFloat(unittest.TestCase):
+    def test_a_isFloat_given_5point1_expect_True(self):
+        # isFloat(expression)
+        self.assertEqual(True, sI.isFloat("5.1"))
+
+    def test_b_isFloat_given_2_expect_false(self):
+        # isFloat(expression)
+        self.assertEqual(False, sI.isFloat("2"))
 
 
 class TestCaseMoveStr(unittest.TestCase):

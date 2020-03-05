@@ -1,11 +1,13 @@
 import myGlobal as dictConstant
+import stringInterpreter as sI
 
 
 class OperatorToken:
-    def __init__ (self):
+    def __init__(self):
         self.symbol = None
         self.associativity = None
         self.precedence = None
+        self.affix = None
 
 
 # Ref: https://en.cppreference.com/w/c/language/operator_precedence
@@ -21,16 +23,15 @@ operatorDict = {"INFIX_PLUS": (dictConstant.LEFT_TO_RIGHT, dictConstant.WEAK),
                 "CLOSE_BRACKET": (dictConstant.LEFT_TO_RIGHT, dictConstant.WEAK)
                 }
 
-
 operatorSymbolSwitch = {
-                    "INFIX_PLUS": '+',
-                    "INFIX_MINUS": '-',
-                    "INFIX_MULTIPLY": '*',
-                    "INFIX_DIVIDE": '/',
-                    "PREFIX_ADD": '+',
-                    "PREFIX_MINUS": '-',
-                    "OPEN_BRACKET": '(',
-                    "CLOSE_BRACKET": ')',
+    "INFIX_PLUS": '+',
+    "INFIX_MINUS": '-',
+    "INFIX_MULTIPLY": '*',
+    "INFIX_DIVIDE": '/',
+    "PREFIX_ADD": '+',
+    "PREFIX_MINUS": '-',
+    "OPEN_BRACKET": '(',
+    "CLOSE_BRACKET": ')',
 }
 
 operatorStrVerifySwitch = {
@@ -78,4 +79,65 @@ def createOperatorToken(operatorStr):
     token.associativity = tokenInfo[dictConstant.Associativity]
     token.precedence = tokenInfo[dictConstant.Precedence]
     token.symbol = getOperatorSymbol(operatorStr)
+    token.affix = getAffixFromOperatorStr(operatorStr)
     return token
+
+
+# Desc: Determine the affix for '+' sign with previous and next char
+# Param: Previous char, next char
+# Retval: '+' sign operator str
+def getPlusSignOperatorStr(previousChar, nextChar):
+    if (previousChar is None) & sI.isNumber(nextChar):
+        return "PREFIX_PLUS"
+    if (previousChar is None) & sI.isOperator(nextChar):
+        return "PREFIX_PLUS"
+    elif sI.isNumber(previousChar) | sI.isNumber(nextChar):
+        return "INFIX_PLUS"
+
+
+# Desc: Determine the affix for '-' sign with previous and next char
+# Param: Previous char, next char
+# Retval: '-' sign operator str
+def getMinusSignOperatorStr(previousChar, nextChar):
+    if (previousChar is None) & sI.isNumber(nextChar):
+        return "PREFIX_MINUS"
+    if (previousChar is None) & sI.isOperator(nextChar):
+        return "PREFIX_MINUS"
+    elif sI.isNumber(previousChar) | sI.isNumber(nextChar):
+        return "INFIX_MINUS"
+
+
+# Dict for operator affix function call/ return str
+# When function search for the keyword (key), function (value)
+#                       {key: value}
+operatorAffixDict = {'+': getPlusSignOperatorStr,
+                     '-': getMinusSignOperatorStr,
+                     '*': "INFIX_MULTIPLY",
+                     '/': "INFIX_DIVIDE",
+                     '(': "OPEN_BRACKET",
+                     ')': "CLOSE_BRACKET"
+                     }
+
+
+# NOTE: Caller must verify the operator symbol before call the funciton
+# Desc: Determine the operator affix with previous and next character
+# Param: Previous char, next char, operator
+# Retval: Operator str
+def getOperatorStrAffix(previousChar, nextChar, operatorSymbol):
+    if (operatorSymbol == '+') | (operatorSymbol == '-'):
+        return operatorAffixDict[operatorSymbol](previousChar, nextChar)
+        #                             [Key]    (param1, param2)
+    else:
+        return operatorAffixDict[operatorSymbol]
+
+
+# Desc: Extract affix from operator str
+# Param: Operator str
+# Retval: Affix
+def getAffixFromOperatorStr(operatorStr):
+    if "PREFIX" in operatorStr:
+        return "PREFIX"
+    elif "INFIX" in operatorStr:
+        return "INFIX"
+
+
