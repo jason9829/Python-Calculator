@@ -17,20 +17,23 @@ class TestCaseCreateOperandToken(unittest.TestCase):
         # createOperandToken(operandStr)
         operandToken = operandT.createOperandToken("10.10")
         self.assertEqual(10.10, operandToken.num)
-        self.assertEqual("float", operandToken.type)
+        self.assertEqual("float", operandToken.numType)
+        self.assertEqual("OPERAND_TOKEN", operandToken.tokenType)
 
     def test_createOperandToken_given_1012_expect_token_with_correct_info(self):
         # createOperandToken(operandStr)
         operandToken = operandT.createOperandToken("1012")
         self.assertEqual(1012, operandToken.num)
-        self.assertEqual("int", operandToken.type)
+        self.assertEqual("int", operandToken.numType)
+        self.assertEqual("OPERAND_TOKEN", operandToken.tokenType)
 
     def test_createOperandToken_given_abcd_expect_exception_raised(self):
         try:
             # createOperandToken(operandStr)
             operandToken = operandT.createOperandToken("abcd")
             self.assertEqual("abcd", operandToken.num)
-            self.assertEqual(None, operandToken.type)
+            self.assertEqual(None, operandToken.numType)
+            self.assertEqual("OPERAND_TOKEN", operandToken.tokenType)
 
         except Exception as e:
             print(e)

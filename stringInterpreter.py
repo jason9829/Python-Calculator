@@ -164,7 +164,3 @@ def isAlphaInStr(expression):
     return False
 
 
-# Desc: Extract token from string
-# Param: String
-# Retval: Token
-# def getTokenFromStr(expression):

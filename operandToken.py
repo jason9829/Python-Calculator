@@ -4,7 +4,8 @@ import stringInterpreter as sI
 class OperandToken:
     def __init__(self):
         self.num = None
-        self.type = None
+        self.numType = None
+        self.tokenType = None
 
 
 # Desc: Determine whether the number is int/ float
@@ -27,7 +28,8 @@ def createOperandToken(operandStr):
     # Convert str to number, then format the numbe (remove decimal if it's int)
     token = OperandToken()
     token.num = sI.formatNumber(sI.stringToNumber(operandStr))
-    token.type = getNumberType(token.num)
+    token.numType = getNumberType(token.num)
+    token.tokenType = "OPERAND_TOKEN"
     return token
 
 

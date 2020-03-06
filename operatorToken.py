@@ -8,6 +8,7 @@ class OperatorToken:
         self.associativity = None
         self.precedence = None
         self.affix = None
+        self.tokenType = None
 
 
 # Ref: https://en.cppreference.com/w/c/language/operator_precedence
@@ -17,7 +18,7 @@ operatorDict = {"INFIX_PLUS": (dictConstant.LEFT_TO_RIGHT, dictConstant.WEAK),
                 "INFIX_MINUS": (dictConstant.LEFT_TO_RIGHT, dictConstant.WEAK),
                 "INFIX_MULTIPLY": (dictConstant.LEFT_TO_RIGHT, dictConstant.MEDIUM),
                 "INFIX_DIVIDE": (dictConstant.LEFT_TO_RIGHT, dictConstant.MEDIUM),
-                "PREFIX_ADD": (dictConstant.RIGHT_TO_LEFT, dictConstant.STRONG),
+                "PREFIX_PLUS": (dictConstant.RIGHT_TO_LEFT, dictConstant.STRONG),
                 "PREFIX_MINUS": (dictConstant.RIGHT_TO_LEFT, dictConstant.STRONG),
                 "OPEN_BRACKET": (dictConstant.LEFT_TO_RIGHT, dictConstant.WEAK),
                 "CLOSE_BRACKET": (dictConstant.LEFT_TO_RIGHT, dictConstant.WEAK)
@@ -28,7 +29,7 @@ operatorSymbolSwitch = {
     "INFIX_MINUS": '-',
     "INFIX_MULTIPLY": '*',
     "INFIX_DIVIDE": '/',
-    "PREFIX_ADD": '+',
+    "PREFIX_PLUS": '+',
     "PREFIX_MINUS": '-',
     "OPEN_BRACKET": '(',
     "CLOSE_BRACKET": ')',
@@ -39,7 +40,7 @@ operatorStrVerifySwitch = {
     "INFIX_MINUS": True,
     "INFIX_MULTIPLY": True,
     "INFIX_DIVIDE": True,
-    "PREFIX_ADD": True,
+    "PREFIX_PLUS": True,
     "PREFIX_MINUS": True,
     "OPEN_BRACKET": True,
     "CLOSE_BRACKET": True,
@@ -80,6 +81,7 @@ def createOperatorToken(operatorStr):
     token.precedence = tokenInfo[dictConstant.Precedence]
     token.symbol = getOperatorSymbol(operatorStr)
     token.affix = getAffixFromOperatorStr(operatorStr)
+    token.tokenType = "OPERATOR_TOKEN"
     return token
 
 

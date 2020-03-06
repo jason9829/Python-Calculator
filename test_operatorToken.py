@@ -73,6 +73,7 @@ class TestCaseCreateOperatorToken(unittest.TestCase):
         self.assertEqual(dictConstant.LEFT_TO_RIGHT, operatorToken.associativity)
         self.assertEqual(dictConstant.MEDIUM, operatorToken.precedence)
         self.assertEqual('/', operatorToken.symbol)
+        self.assertEqual("OPERATOR_TOKEN", operatorToken.tokenType)
 
     def test_b_createOperatorToken_given_OPEN_BRACKET_expect_return_token_with_correct_info(self):
         """
@@ -85,6 +86,7 @@ class TestCaseCreateOperatorToken(unittest.TestCase):
         self.assertEqual(dictConstant.LEFT_TO_RIGHT, operatorToken.associativity)
         self.assertEqual(dictConstant.WEAK, operatorToken.precedence)
         self.assertEqual('(', operatorToken.symbol)
+        self.assertEqual("OPERATOR_TOKEN", operatorToken.tokenType)
 
     def test_c_createOperatorToken_given_CURLY_BRACKET_expect_exception_raised(self):
         try:                        # createOperatorToken(operatorStr)
@@ -92,6 +94,7 @@ class TestCaseCreateOperatorToken(unittest.TestCase):
             self.assertEqual(None, operatorToken.associativity)
             self.assertEqual(None,  operatorToken.precedence)
             self.assertEqual(None, operatorToken.symbol)
+            self.assertEqual("OPERATOR_TOKEN", operatorToken.tokenType)
 
         except Exception as e:
             print(e)
