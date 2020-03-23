@@ -9,7 +9,7 @@ import operatorToken as operatorT
 #       Will try to fix this bug soon. 5 Mar 2020
 # Def: Calculate the expression using shunting yard algorithm with stack
 # Param: operandStack, operatorStack, expression
-# Retval: Calculated final answer
+# Retval: Calculated final answer operand token
 def shuntingYard(operandStack, operatorStack, expression):
     if not sI.isAlphaInStr(expression):  # If there are alphabet in str, return the call
         # expression = sI.addSpaceBetweenCharacters(expression)  # Add space between character for splitting
@@ -24,11 +24,7 @@ def shuntingYard(operandStack, operatorStack, expression):
         listIndex += 1
         expressionListLength -= 1
 
-    num2Token = st.popStack(operandStack)
-    num1Token = st.popStack(operandStack)
-    operator = st.popStack(operatorStack)
-    ans = ar.calculationBasedOnOperator(num1Token.num, num2Token.num, operator.symbol)
-    st.pushStack(operandStack, ans)
+    calculateAnsAndPushToOperandStack(operandStack, operatorStack)
     return st.popStack(operandStack)
 
 
@@ -75,6 +71,7 @@ def getCharFromToken(token):
 # Desc: Create and push operand or operator token to respective stack
 # Param: listIndex, expressionList, operandStack, operatorStack, previousToken
 # Retval: Token
+
 def createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack, previousToken):
     currentChar = expressionList[listIndex]
     if sI.isNumber(currentChar):  # formatNumber(number)
@@ -88,7 +85,32 @@ def createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorS
     return token
 
 
+# Desc: Create operand or operator token and return the token
+# Param: listIndex, expressionList, operandStack, operatorStack, previousToken
+# Retval: Token
+def createToken(listIndex, expressionList, previousToken):
+    currentChar = expressionList[listIndex]
+    if sI.isNumber(currentChar):  # formatNumber(number)
+        token = operandT.createOperandToken(sI.formatNumber(sI.stringToNumber(currentChar)))
+    elif sI.isOperator(currentChar):  # Raise exception when non operator detected, required next char to check get
+        # affix
+        token = operatorT.createOperatorToken(operatorT.getOperatorStrAffix(getCharFromToken(previousToken),
+                                                                            expressionList[listIndex + 1],
+                                                                            currentChar))
+    return token
+
+
+# Desc: Push token to respective stack
+# Param: Token, operandStack, operatorStack
 # Desc: Pop the operand and operator to do the calculation
+def pushTokenToStack(token, operandStack, operatorStack):
+    if token.tokenType == "OPERATOR_TOKEN":
+        st.pushStack(operatorStack, token)
+
+    elif token.tokenType == "OPERAND_TOKEN":
+        st.pushStack(operandStack, token)
+
+
 # Param: Operand stack, operator stack
 # Retval: Operand token (w/ calculated ans)
 def calculateAnsAndPushToOperandStack(operandStack, operatorStack):

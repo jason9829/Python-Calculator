@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d54b46f0-6d84-4ca6-988d-0802b2714d8f" name="Default Changelist" comment="" />
+    <list default="true" id="d54b46f0-6d84-4ca6-988d-0802b2714d8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shuntingYard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shuntingYard.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/operatorToken.py" beforeDir="false" afterPath="$PROJECT_DIR$/operatorToken.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shuntingYard.py" beforeDir="false" afterPath="$PROJECT_DIR$/shuntingYard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_operatorToken.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_operatorToken.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_shuntingYard.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_shuntingYard.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +36,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager" selected="Python tests.Unittests in shuntingYard">
     <configuration name="Unittests for test_shuntingYard.TestCaseCreateAndPushTokenToStack.test_b_createAndPushTokenToStack_given_operator_expect_push_in_operator_stack" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -161,14 +169,16 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1344" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1583461910229" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1583292958223">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="259" y="0" key="SettingsEditor" timestamp="1584929547388">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1583292958223" />
-    <state x="378" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1583455533638">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="259" y="0" key="SettingsEditor/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1584929547388" />
+    <state x="531" y="266" key="com.intellij.ide.util.TipDialog" timestamp="1584929331961">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="378" y="186" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1583455533638" />
+    <state x="531" y="266" key="com.intellij.ide.util.TipDialog/1920.0.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1584929331961" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1583370718304">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -189,7 +199,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test_shuntingYard.py</url>
-          <line>74</line>
+          <line>96</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>

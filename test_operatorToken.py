@@ -1,7 +1,7 @@
 import unittest
 import operatorToken as operatorT
 import myGlobal as dictConstant
-
+import stack
 
 class TestCaseIsOperatorStrValid(unittest.TestCase):
     def test_a_isOperatorStrValid_given_PREFIX_MINUS_expect_true(self):
@@ -145,6 +145,68 @@ class TestCaseGetOperatorSignAffixStr(unittest.TestCase):
     def test_k_getAffixFromOperatorStr_given_INFIX_DIVIDE_expect_INFIX(self):
         # getAffixFromOperatorStr(operatorStr)
         self.assertEqual("INFIX", operatorT.getAffixFromOperatorStr("INFIX_DIVIDE"))
+
+
+class TestIsOperatorInStackHigherPrecedence(unittest.TestCase):
+    def test_a_isOperatorInStackHigherPrecedence_given_prefix_plus_at_stack_and_infix_plus_as_token_expect_true(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise operator token to insert to stack
+        operatorToken = operatorT.OperatorToken()
+        operatorToken.associativity = dictConstant.RIGHT_TO_LEFT
+        operatorToken.precedence = dictConstant.STRONG
+        operatorToken.symbol = '+'
+        operatorToken.affix = "PREFIX"
+        operatorToken.tokenType = "OPERATOR_TOKEN"
+
+        # Initialise current token
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.LEFT_TO_RIGHT
+        currentToken.precedence = dictConstant.WEAK
+        currentToken.symbol = '+'
+        currentToken.affix = "INFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+        # Push operator token into stack
+        stack.pushStack(operatorStack, operatorToken)
+        # isOperatorInStackHigherPrecedence(operatorStack, token)
+        self.assertEqual(True, operatorT.isOperatorInStackHigherPrecedence(operatorStack, currentToken))
+
+    def test_b_isOperatorInStackHigherPrecedence_given_empty_stack_expect_false(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise current token
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.LEFT_TO_RIGHT
+        currentToken.precedence = dictConstant.WEAK
+        currentToken.symbol = '+'
+        currentToken.affix = "INFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+
+        # isOperatorInStackHigherPrecedence(operatorStack, token)
+        self.assertEqual(False, operatorT.isOperatorInStackHigherPrecedence(operatorStack, currentToken))
+
+    def test_c_isOperatorInStackHigherPrecedence_given_infix_plus_at_stack_and_prefix_plus_as_token_expect_false(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise operator token to insert to stack
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.LEFT_TO_RIGHT
+        currentToken.precedence = dictConstant.WEAK
+        currentToken.symbol = '+'
+        currentToken.affix = "INFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+
+        # Initialise current token
+        operatorToken = operatorT.OperatorToken()
+        operatorToken.associativity = dictConstant.RIGHT_TO_LEFT
+        operatorToken.precedence = dictConstant.STRONG
+        operatorToken.symbol = '+'
+        operatorToken.affix = "PREFIX"
+        operatorToken.tokenType = "OPERATOR_TOKEN"
+        # Push operator token into stack
+        stack.pushStack(operatorStack, operatorToken)
+        # isOperatorInStackHigherPrecedence(operatorStack, token)
+        self.assertEqual(True, operatorT.isOperatorInStackHigherPrecedence(operatorStack, currentToken))
 
 
 if __name__ == '__main__':
