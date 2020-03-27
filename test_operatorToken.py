@@ -146,7 +146,7 @@ class TestCaseGetOperatorSignAffixStr(unittest.TestCase):
         # getAffixFromOperatorStr(operatorStr)
         self.assertEqual("INFIX", operatorT.getAffixFromOperatorStr("INFIX_DIVIDE"))
 
-
+"""
 class TestIsOperatorInStackHigherPrecedence(unittest.TestCase):
     def test_a_isOperatorInStackHigherPrecedence_given_prefix_plus_at_stack_and_infix_plus_as_token_expect_true(self):
         operatorStack = []  # Initialise operator stack
@@ -207,6 +207,93 @@ class TestIsOperatorInStackHigherPrecedence(unittest.TestCase):
         stack.pushStack(operatorStack, operatorToken)
         # isOperatorInStackHigherPrecedence(operatorStack, token)
         self.assertEqual(True, operatorT.isOperatorInStackHigherPrecedence(operatorStack, currentToken))
+
+"""
+
+
+class TestIsOperatorTokenReadyToPush(unittest.TestCase):
+    def test_a_isOperatorTokenReadyToPush_given_prefix_plus_at_stack_and_infix_plus_as_token_expect_false(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise operator token to insert to stack
+        operatorToken = operatorT.OperatorToken()
+        operatorToken.associativity = dictConstant.RIGHT_TO_LEFT
+        operatorToken.precedence = dictConstant.STRONG
+        operatorToken.symbol = '+'
+        operatorToken.affix = "PREFIX"
+        operatorToken.tokenType = "OPERATOR_TOKEN"
+
+        # Initialise current token
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.LEFT_TO_RIGHT
+        currentToken.precedence = dictConstant.WEAK
+        currentToken.symbol = '+'
+        currentToken.affix = "INFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+        # Push operator token into stack
+        stack.pushStack(operatorStack, operatorToken)
+        # isOperatorTokenReadyToPush(operatorStack, token)
+        self.assertEqual(False, operatorT.isOperatorTokenReadyToPush(operatorStack, currentToken))
+
+    def test_b_isOperatorTokenReadyToPush_given_prefix_plus_at_stack_and_prefix_minus_as_token_expect_true(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise operator token to insert to stack
+        operatorToken = operatorT.OperatorToken()
+        operatorToken.associativity = dictConstant.RIGHT_TO_LEFT
+        operatorToken.precedence = dictConstant.STRONG
+        operatorToken.symbol = '+'
+        operatorToken.affix = "PREFIX"
+        operatorToken.tokenType = "OPERATOR_TOKEN"
+
+        # Initialise current token
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.RIGHT_TO_LEFT
+        currentToken.precedence = dictConstant.STRONG
+        currentToken.symbol = '+'
+        currentToken.affix = "PREFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+        # Push operator token into stack
+        stack.pushStack(operatorStack, operatorToken)
+        # isOperatorTokenReadyToPush(operatorStack, token)
+        self.assertEqual(True, operatorT.isOperatorTokenReadyToPush(operatorStack, currentToken))
+
+    def test_c_isOperatorTokenReadyToPush_given_prefix_plus_at_stack_and_prefix_minus_as_token_expect_true(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise operator token to insert to stack
+        operatorToken = operatorT.OperatorToken()
+        operatorToken.associativity = dictConstant.RIGHT_TO_LEFT
+        operatorToken.precedence = dictConstant.STRONG
+        operatorToken.symbol = '+'
+        operatorToken.affix = "PREFIX"
+        operatorToken.tokenType = "OPERATOR_TOKEN"
+
+        # Initialise current token
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.RIGHT_TO_LEFT
+        currentToken.precedence = dictConstant.STRONG
+        currentToken.symbol = '+'
+        currentToken.affix = "PREFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+        # Push operator token into stack
+        stack.pushStack(operatorStack, operatorToken)
+        # isOperatorTokenReadyToPush(operatorStack, token)
+        self.assertEqual(True, operatorT.isOperatorTokenReadyToPush(operatorStack, currentToken))
+
+    def test_d_isOperatorTokenReadyToPush_given_empty_stack_expect_true(self):
+        operatorStack = []  # Initialise operator stack
+
+        # Initialise current token
+        currentToken = operatorT.OperatorToken()
+        currentToken.associativity = dictConstant.RIGHT_TO_LEFT
+        currentToken.precedence = dictConstant.STRONG
+        currentToken.symbol = '+'
+        currentToken.affix = "PREFIX"
+        currentToken.tokenType = "OPERATOR_TOKEN"
+
+        # isOperatorTokenReadyToPush(operatorStack, token)
+        self.assertEqual(True, operatorT.isOperatorTokenReadyToPush(operatorStack, currentToken))
 
 
 if __name__ == '__main__':

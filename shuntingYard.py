@@ -46,7 +46,7 @@ def isOperatorInExpressionValid(expression):
 
 # Desc: Verify the expression before processing it
 # Param: Expression
-# Retval: True/ raise exception (false)
+# Retval: True/ raise
 def isExpressionValid(expression):
     if sI.isAlphaInStr(expression):
         return False
@@ -111,6 +111,7 @@ def pushTokenToStack(token, operandStack, operatorStack):
         st.pushStack(operandStack, token)
 
 
+# Desc: Calculate operand with operator in respective stack, then push back the operand answer
 # Param: Operand stack, operator stack
 # Retval: Operand token (w/ calculated ans)
 def calculateAnsAndPushToOperandStack(operandStack, operatorStack):
@@ -120,3 +121,25 @@ def calculateAnsAndPushToOperandStack(operandStack, operatorStack):
     ans = ar.calculationBasedOnOperator(num1Token.num, num2Token.num, operator.symbol)
     token = operandT.createOperandToken(sI.formatNumber(ans))
     st.pushStack(operandStack, token)
+
+
+# Desc: Check if number of tokens in respective stack is enough for operation
+# Param: Operand stack, operator stack
+# Retval: True/ False
+def isNoOfTokensValidForOperation(operandStack, operatorStack):
+    if len(operandStack) >= 2 and len(operatorStack) >= 1:
+        return True
+    else:
+        return False
+
+
+# Desc: Check if the tokens in respective stack is ready for operation
+#       Check for no of tokens and operator precedence
+# Param: Operand stack, operator stack, token
+# Retval: True/ False
+#def isStacksReadyForOperation(operandStack, operatorStack, token):
+#    if isNoOfTokensValidForOperation(operandStack, operatorStack) and \
+#            operatorT.isOperatorInStackHigherPrecedence(operatorStack, token):
+#        return True
+#    else:
+#        return False

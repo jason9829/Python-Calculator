@@ -190,5 +190,79 @@ class TestCaseCalculateAnsAndPushToOperandStack(unittest.TestCase):
         self.assertEqual(10/2, operandStack[0].num)
 
 
+class TestCaseIsNoOfTokensValidForOperation(unittest.TestCase):
+    # One operand and one operator will cause error because the function to create token
+    # will check for next token for operator token
+    def test_a_isNoOfTokensValidForOperation_given_2_operand_and_1_operator_expect_true(self):
+        expressionList = ["10", "/", "2"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token2)
+        st.pushStack(operandStack, token3)
+        # isNoOfTokensValidForOperation(operandStack, operatorStack)
+        self.assertEqual(True, sY.isNoOfTokensValidForOperation(operandStack, operatorStack))
+
+    def test_b_isNoOfTokensValidForOperation_given_1_operand_and_no_operator_expect_true(self):
+        expressionList = ["-", "2"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        # isNoOfTokensValidForOperation(operandStack, operatorStack)
+        self.assertEqual(False, sY.isNoOfTokensValidForOperation(operandStack, operatorStack))
+
+    def test_c_isNoOfTokensValidForOperation_given_3_operand_and_2_operator_expect_true(self):
+        expressionList = ["1", "-", "2", "+", "3"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operandStack, token3)
+        token4 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token4)
+        token5 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operandStack, token5)
+        # isNoOfTokensValidForOperation(operandStack, operatorStack)
+        self.assertEqual(True, sY.isNoOfTokensValidForOperation(operandStack, operatorStack))
+
+
+"""class TestCaseIsStacksReadyForOperation(unittest.TestCase):
+    def test_a_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_true(self):
+        expressionList = ["1", "+", "2", "-", "3"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operandStack, token3)
+        token4 = sY.createToken(1, expressionList, token1)
+        # isStacksReadyForOperation(operandStack, operatorStack, token)
+        self.assertEqual(True, sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
+"""
+
+
 if __name__ == '__main__':
     unittest.main()

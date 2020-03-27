@@ -146,12 +146,15 @@ def getAffixFromOperatorStr(operatorStr):
 # Desc: Check if operator token in operator stack has higher precedence than current token
 # Param: Operator stack, current token
 # Retval: True/ False
-def isOperatorInStackHigherPrecedence(operatorStack, token):
+def isOperatorTokenReadyToPush(operatorStack, token):
     stackLen = len(operatorStack)
     if not stackLen == 0:  # If the stack is not empty
-        if operatorStack[stackLen-1].precedence > token.precedence: # If token's precedence is lower
+        # If token's precedence is higher
+        if operatorStack[stackLen-1].precedence < token.precedence or \
+            operatorStack[stackLen - 1].precedence == token.precedence: # Same precedence
             return True
-        else:
+        else:  # If token's precedence is lower
             return False
-    else:
-        return False
+    else:  # Stack is empty
+        return True
+
