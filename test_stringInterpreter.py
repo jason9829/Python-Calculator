@@ -7,11 +7,11 @@ class TestCaseExtractFloatStr(unittest.TestCase):
         # extractFloatStr(expression)
         self.assertEqual("2.12", sI.extractFloatStr("2.12"))
 
-    def test_a_extractFloatStr_5point55_plus_expect_return_5point55(self):
+    def test_b_extractFloatStr_5point55_plus_expect_return_5point55(self):
         # extractFloatStr(expression)
         self.assertEqual("5.55", sI.extractFloatStr("5.55+"))
 
-    def test_a_extractFloatStr_15point12345678_plus_minus_divide_expect_return_15point12345678(self):
+    def test_c_extractFloatStr_15point12345678_plus_minus_divide_expect_return_15point12345678(self):
         # extractFloatStr(expression)
         self.assertEqual("15.12345678", sI.extractFloatStr("15.12345678 + -/"))
 
@@ -90,11 +90,11 @@ class TestCaseStringToNumber(unittest.TestCase):
 
 
 class TestCaseFormatNumber(unittest.TestCase):
-    def test_formatNumber_given_4_expect_4(self):
+    def test_a_formatNumber_given_4_expect_4(self):
         # formatNumber(num)
         self.assertEqual(4, sI.formatNumber(4))
 
-    def test_formatNumber_given_60point5_expect_60point5(self):
+    def test_b_formatNumber_given_60point5_expect_60point5(self):
         # formatNumber(num)
         self.assertEqual(60.5, sI.formatNumber(60.5))
 
@@ -114,7 +114,7 @@ class TestCaseMoveStr(unittest.TestCase):
         # moveStr(expression, iteration)
         self.assertEqual("3456789", sI.moveStr("123456789", 2))
 
-    def test_a_moveStr_given_abcd1234_and_4_expect_1234(self):
+    def test_b_moveStr_given_abcd1234_and_4_expect_1234(self):
         # moveStr(expression, iteration)
         self.assertEqual("1234", sI.moveStr("abcd1234", 4))
 

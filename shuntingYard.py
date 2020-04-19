@@ -17,16 +17,36 @@ def shuntingYard(operandStack, operatorStack, expression):
         expressionListLength = len(expressionList)
         listIndex = 0
         previousToken = None
+        endOfOperationFlag = False
 
-    while expressionListLength != 0:
+    #while expressionListLength != 0 and endOfOperationFlag == False:
+    while not isOperationCompleted(expressionListLength, endOfOperationFlag):
         # createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack, previousToken)
-        previousToken = createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack, previousToken)
-        listIndex += 1
-        expressionListLength -= 1
+        if isNoOfTokensValidForOperation(operandStack, operatorStack):
+            calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+            if expressionListLength == 0 and len(operatorStack) == 0:
+                endOfOperationFlag = True
+        else:
+            previousToken = createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack,
+                                                      previousToken)
+            listIndex += 1
+            expressionListLength -= 1
 
-    calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+
     return st.popStack(operandStack)
 
+
+# Desc: Verify whether the operation is completed
+# Param: expression list length, endOfOperatorFlag
+# Retval: True/ False
+def isOperationCompleted(expressionListLength, endOfOperatorFlag):
+    if expressionListLength == 0:
+        if endOfOperatorFlag:
+            return True
+        else:
+            return False
+    else:
+        return False
 
 # Desc: Verify the operator in the str
 # Param: Str (non alphabet)
@@ -132,12 +152,11 @@ def isNoOfTokensValidForOperation(operandStack, operatorStack):
     else:
         return False
 
-
 # Desc: Check if the tokens in respective stack is ready for operation
 #       Check for no of tokens and operator precedence
 # Param: Operand stack, operator stack, token
 # Retval: True/ False
-#def isStacksReadyForOperation(operandStack, operatorStack, token):
+# def isStacksReadyForOperation(operandStack, operatorStack, token):
 #    if isNoOfTokensValidForOperation(operandStack, operatorStack) and \
 #            operatorT.isOperatorInStackHigherPrecedence(operatorStack, token):
 #        return True
