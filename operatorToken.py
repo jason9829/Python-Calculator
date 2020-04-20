@@ -146,15 +146,30 @@ def getAffixFromOperatorStr(operatorStr):
 # Desc: Check if operator token in operator stack has higher precedence than current token
 # Param: Operator stack, current token
 # Retval: True/ False
-def isOperatorTokenReadyToPush(operatorStack, token):
+def isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
     stackLen = len(operatorStack)
-    if not stackLen == 0:  # If the stack is not empty
+    # If the token is operator and the stack is not empty
+    if token.tokenType == "OPERATOR_TOKEN" and not stackLen == 0:
         # If token's precedence is higher
-        if operatorStack[stackLen-1].precedence < token.precedence or \
-            operatorStack[stackLen - 1].precedence == token.precedence: # Same precedence
+        if operatorStack[stackLen-1].precedence > token.precedence:
             return True
-        else:  # If token's precedence is lower
+        else:  # If token's precedence is lower or Same precedence
             return False
     else:  # Stack is empty
-        return True
+        raise ValueError("Error: isOperatorInStackHigherPrecedence() operatorStackIsEmpty.")
 
+
+# Desc: Check if operator token in operator stack has same precedence than current token
+# Param: Operator stack, current token
+# Retval: True/ False
+def isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
+    stackLen = len(operatorStack)
+    # If the token is operator and the stack is not empty
+    if token.tokenType == "OPERATOR_TOKEN" and not stackLen == 0:
+        # If token's precedence is higher
+        if operatorStack[stackLen-1].precedence == token.precedence: # Same precedence
+            return True
+        else:  # If token's precedence is lower or Same precedence
+            return False
+    else:  # Stack is empty
+        raise ValueError("Error: isOperatorInStackHigherPrecedence() operatorStackIsEmpty.")

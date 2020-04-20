@@ -19,34 +19,40 @@ def shuntingYard(operandStack, operatorStack, expression):
         previousToken = None
         endOfOperationFlag = False
 
-    #while expressionListLength != 0 and endOfOperationFlag == False:
     while not isOperationCompleted(expressionListLength, endOfOperationFlag):
-        # createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack, previousToken)
+        if expressionListLength != 0:  # Only create the token to check the precedence if it's not the end of expression
+            token = createToken(listIndex, expressionList, previousToken)
         if isNoOfTokensValidForOperation(operandStack, operatorStack):
-            calculateAnsAndPushToOperandStack(operandStack, operatorStack)
-            if expressionListLength == 0 and len(operatorStack) == 0:
-                endOfOperationFlag = True
+            if not operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token): # If token's precedence  is lower
+                calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+                if expressionListLength == 0 and len(operatorStack) == 0:
+                    endOfOperationFlag = True
+            else:  #  If token's precedence is higher
+                previousToken = createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack,
+                                                          previousToken)
+                listIndex += 1
+                expressionListLength -= 1
         else:
             previousToken = createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack,
                                                       previousToken)
             listIndex += 1
             expressionListLength -= 1
 
-
     return st.popStack(operandStack)
 
 
 # Desc: Verify whether the operation is completed
-# Param: expression list length, endOfOperatorFlag
+# Param: expression list length, endOfOperationFlag
 # Retval: True/ False
-def isOperationCompleted(expressionListLength, endOfOperatorFlag):
+def isOperationCompleted(expressionListLength, endOfOperationFlag):
     if expressionListLength == 0:
-        if endOfOperatorFlag:
+        if endOfOperationFlag:
             return True
         else:
             return False
     else:
         return False
+
 
 # Desc: Verify the operator in the str
 # Param: Str (non alphabet)
