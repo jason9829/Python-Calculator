@@ -31,6 +31,14 @@ class TestCaseShuntingYard(unittest.TestCase):
         # shuntingYard(operandStack, operatorStack, expression)
         self.assertEqual(100.9 + 2.4 * 2, (sY.shuntingYard(operandStack, operatorStack, "100.9 + 2.4 * 2")).num)
 
+    def test_e_shuntingYard_given_100point9_divide_2point4_multiply_2_expect_correct(self):
+        operandStack = []
+        operatorStack = []
+        # shuntingYard(operandStack, operatorStack, expression)
+        self.assertEqual(100.9 / 2.4 * 2, (sY.shuntingYard(operandStack, operatorStack, "100.9 / 2.4 * 2")).num)
+
+
+
 
 class TestCaseIsExpressionValid(unittest.TestCase):
     def test_a_isExpressionValid_given_1a_plus_1_expect_false(self):

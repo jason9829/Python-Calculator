@@ -3,6 +3,7 @@ import stack as st
 import stringInterpreter as sI
 import operandToken as operandT
 import operatorToken as operatorT
+import myGlobal as myGlobal
 
 
 # NOTE: The expression pass in are expected to have spaces between numbers and operators.
@@ -20,23 +21,37 @@ def shuntingYard(operandStack, operatorStack, expression):
         endOfOperationFlag = False
 
     while not isOperationCompleted(expressionListLength, endOfOperationFlag):
-        if expressionListLength != 0:  # Only create the token to check the precedence if it's not the end of expression
-            token = createToken(listIndex, expressionList, previousToken)
-        if isNoOfTokensValidForOperation(operandStack, operatorStack):
-            if not operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token): # If token's precedence  is lower
-                calculateAnsAndPushToOperandStack(operandStack, operatorStack)
-                if expressionListLength == 0 and len(operatorStack) == 0:
-                    endOfOperationFlag = True
-            else:  #  If token's precedence is higher
-                previousToken = createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack,
-                                                          previousToken)
-                listIndex += 1
-                expressionListLength -= 1
+        if expressionListLength != 0: token = createToken(listIndex, expressionList, previousToken)
+        else: token.tokenType = "END_OF_OPERATION_TOKEN"
+
+        if token.tokenType == "OPERAND_TOKEN":  # Directly push into the operand stack
+            pushTokenToStack(token, operandStack, operatorStack)
+            previousToken = token
+
+        elif token.tokenType == "OPERATOR_TOKEN": # If the token type is operator
+            if len(operatorStack) == 0: # If the operator stack is empty then push to stack directly
+                pushTokenToStack(token, operandStack, operatorStack)
+                previousToken = token
+            elif operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
+                if isNoOfTokensValidForOperation(operandStack, operatorStack):
+                    calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+                    previousToken = operandStack[len(operatorStack)-1]
+                    if expressionListLength == 0 and len(operatorStack) == 0:
+                        endOfOperationFlag = True
+
+            elif operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
+                previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
+
+            else:
+                pushTokenToStack(token, operandStack, operatorStack)
+                previousToken = token
         else:
-            previousToken = createAndPushTokenToStack(listIndex, expressionList, operandStack, operatorStack,
-                                                      previousToken)
-            listIndex += 1
-            expressionListLength -= 1
+            calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+            if expressionListLength == 0 and len(operatorStack) == 0:
+                endOfOperationFlag = True
+            expressionListLength += 1 # To offset the decrement later
+        listIndex += 1
+        expressionListLength -= 1
 
     return st.popStack(operandStack)
 
@@ -157,6 +172,21 @@ def isNoOfTokensValidForOperation(operandStack, operatorStack):
         return True
     else:
         return False
+
+
+# Desc: Perform the actions when the operator stack's head operator and token's associativity are same
+# Param: Operand stack, operator stack, token
+# Retval: Token that pass in, to ease the update at main function
+def handleSameAssociativityAndReturnToken(operandStack, operatorStack, token):
+    if token.associativity == operatorStack[len(operatorStack) - 1].associativity:
+        if token.associativity == myGlobal.LEFT_TO_RIGHT: # LTR, perform left operation first
+            calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+            pushTokenToStack(token, operandStack, operatorStack)
+
+        else: # RTL, perform right operation first, or no associativity
+            pushTokenToStack(token, operandStack, operatorStack)
+
+    return token
 
 # Desc: Check if the tokens in respective stack is ready for operation
 #       Check for no of tokens and operator precedence
