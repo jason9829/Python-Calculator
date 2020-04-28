@@ -172,4 +172,4 @@ def isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
         else:  # If token's precedence is lower or Same precedence
             return False
     else:  # Stack is empty
-        raise ValueError("Error: isOperatorInStackHigherPrecedence() operatorStackIsEmpty.")
+        return False # Remove the exception to suit the use of caller function

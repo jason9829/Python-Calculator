@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/operatorToken.py" beforeDir="false" afterPath="$PROJECT_DIR$/operatorToken.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shuntingYard.py" beforeDir="false" afterPath="$PROJECT_DIR$/shuntingYard.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_operatorToken.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_operatorToken.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_shuntingYard.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_shuntingYard.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +28,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../RockPaperScissorsGame" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_shuntingYard.TestCaseCalculateAnsAndPushToOperandStack">
-    <configuration name="Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation">
+    <configuration name="Unittests for test_operatorToken.TestIsOperatorInStackSamePrecedenceWithCurrentToken.test_d_isOperatorInStackSamePrecedenceWithCurrentToken_given_empty_stack_and_valid_operator_token_expect_exception" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Python-Calculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -38,11 +39,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseCalculateAndReturnAnsToken&quot;" />
+      <option name="_new_target" value="&quot;test_operatorToken.TestIsOperatorInStackSamePrecedenceWithCurrentToken.test_d_isOperatorInStackSamePrecedenceWithCurrentToken_given_empty_stack_and_valid_operator_token_expect_exception&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_a_calculateAndReturnAnsToken_given_2_plus_100_expect_return_token_with_num_and_correct_token_attributes" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Python-Calculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -52,11 +53,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_a_calculateAndReturnAnsToken_given_2_plus_100_expect_return_token_with_num_and_correct_token_attributes&quot;" />
+      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseIsStacksReadyForOperation&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_c_calculateAndReturnAnsToken_given_10p5_multiply_10_expect_return_token_with_correct_num__and_correct_token_attributes" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation.test_c_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_same_precedence_but_xready" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Python-Calculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -66,11 +67,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_c_calculateAndReturnAnsToken_given_10p5_multiply_10_expect_return_token_with_correct_num__and_correct_token_attributes&quot;" />
+      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseIsStacksReadyForOperation.test_c_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_same_precedence_but_xready&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_d_calculateAndReturnAnsToken_given_10p5_divide_5point1_expect_return_token_with_correct_num__and_correct_token_attributes" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation.test_d_isStacksReadyForOperation_given_1_plus_in_stack_expect_no" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Python-Calculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -80,11 +81,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_d_calculateAndReturnAnsToken_given_10p5_divide_5point1_expect_return_token_with_correct_num__and_correct_token_attributes&quot;" />
+      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseIsStacksReadyForOperation.test_d_isStacksReadyForOperation_given_1_plus_in_stack_expect_no&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_shuntingYard.TestCaseCalculateAnsAndPushToOperandStack" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests in test_operatorToken.py" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Python-Calculator" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -94,17 +95,17 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_shuntingYard.TestCaseCalculateAnsAndPushToOperandStack&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_operatorToken.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseCalculateAnsAndPushToOperandStack" />
-        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken" />
-        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_c_calculateAndReturnAnsToken_given_10p5_multiply_10_expect_return_token_with_correct_num__and_correct_token_attributes" />
-        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_a_calculateAndReturnAnsToken_given_2_plus_100_expect_return_token_with_num_and_correct_token_attributes" />
-        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseCalculateAndReturnAnsToken.test_d_calculateAndReturnAnsToken_given_10p5_divide_5point1_expect_return_token_with_correct_num__and_correct_token_attributes" />
+        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation" />
+        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation.test_d_isStacksReadyForOperation_given_1_plus_in_stack_expect_no" />
+        <item itemvalue="Python tests.Unittests in test_operatorToken.py" />
+        <item itemvalue="Python tests.Unittests for test_operatorToken.TestIsOperatorInStackSamePrecedenceWithCurrentToken.test_d_isOperatorInStackSamePrecedenceWithCurrentToken_given_empty_stack_and_valid_operator_token_expect_exception" />
+        <item itemvalue="Python tests.Unittests for test_shuntingYard.TestCaseIsStacksReadyForOperation.test_c_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_same_precedence_but_xready" />
       </list>
     </recent_temporary>
   </component>
@@ -126,38 +127,38 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1587348581355" />
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1588041402025">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1588043007121">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588041402025" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1588041402025">
+    <state width="1899" height="282" key="GridCell.Tab.0.bottom/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588043007121" />
+    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1588043007121">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588041402025" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1588041402025">
+    <state width="1899" height="282" key="GridCell.Tab.0.center/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588043007121" />
+    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1588043007121">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588041402025" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1588041402025">
+    <state width="1899" height="282" key="GridCell.Tab.0.left/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588043007121" />
+    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1588043007121">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.right/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588041402025" />
-    <state width="1899" height="244" key="GridCell.Tab.1.bottom" timestamp="1588039980570">
+    <state width="1899" height="282" key="GridCell.Tab.0.right/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588043007121" />
+    <state width="1899" height="244" key="GridCell.Tab.1.bottom" timestamp="1588042975852">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="244" key="GridCell.Tab.1.bottom/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588039980570" />
-    <state width="1899" height="244" key="GridCell.Tab.1.center" timestamp="1588039980569">
+    <state width="1899" height="244" key="GridCell.Tab.1.bottom/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588042975852" />
+    <state width="1899" height="244" key="GridCell.Tab.1.center" timestamp="1588042975852">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="244" key="GridCell.Tab.1.center/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588039980569" />
-    <state width="1899" height="244" key="GridCell.Tab.1.left" timestamp="1588039980569">
+    <state width="1899" height="244" key="GridCell.Tab.1.center/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588042975852" />
+    <state width="1899" height="244" key="GridCell.Tab.1.left" timestamp="1588042975852">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="244" key="GridCell.Tab.1.left/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588039980569" />
-    <state width="1899" height="244" key="GridCell.Tab.1.right" timestamp="1588039980570">
+    <state width="1899" height="244" key="GridCell.Tab.1.left/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588042975852" />
+    <state width="1899" height="244" key="GridCell.Tab.1.right" timestamp="1588042975852">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="244" key="GridCell.Tab.1.right/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588039980570" />
+    <state width="1899" height="244" key="GridCell.Tab.1.right/1920.-9.1280.693/0.0.1920.1040@0.0.1920.1040" timestamp="1588042975852" />
     <state x="656" y="688" key="com.intellij.ide.util.TipDialog" timestamp="1588039813063">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -260,9 +260,11 @@ def isStacksReadyForOperation(operandStack, operatorStack, token):
             operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
        return "YES"
 
-    elif isNoOfTokensValidForOperation(operandStack, operatorStack) and \
-            operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
-       return "SAME_PRECEDENCE"
+    elif operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
+            if isNoOfTokensValidForOperation(operandStack, operatorStack):
+                return "SAME_PRECEDENCE_AND_READY"
+            else:
+                return "SAME_PRECEDENCE_BUT_XREADY"
 
     else:
         return "NO"

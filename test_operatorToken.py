@@ -400,7 +400,6 @@ class TestIsOperatorInStackSamePrecedenceWithCurrentToken(unittest.TestCase):
 
 
     def test_d_isOperatorInStackSamePrecedenceWithCurrentToken_given_empty_stack_and_valid_operator_token_expect_exception(self):
-        try:
             # isOperatorInStackHigherPrecedence(operatorStack, token)
             operatorStack = []  # Initialise operator stack
             # Initialise current token
@@ -412,11 +411,8 @@ class TestIsOperatorInStackSamePrecedenceWithCurrentToken(unittest.TestCase):
             currentToken.tokenType = "OPERATOR_TOKEN"
             self.assertEqual(False, operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, currentToken))
 
-        except Exception as e:
-            print(e)
 
     def test_e_isOperatorInStackSamePrecedenceWithCurrentToken_given_not_empty_stack_and_invalid_operator_token_expect_exception(self):
-        try:
             # isOperatorInStackHigherPrecedence(operatorStack, token)
             operatorStack = []  # Initialise operator stack
 
@@ -441,8 +437,6 @@ class TestIsOperatorInStackSamePrecedenceWithCurrentToken(unittest.TestCase):
 
             self.assertEqual(False, operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, currentToken))
 
-        except Exception as e:
-            print(e)
 
 
 if __name__ == '__main__':

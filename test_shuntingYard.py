@@ -347,7 +347,7 @@ class TestCaseIsNoOfTokensValidForOperation(unittest.TestCase):
 
 
 class TestCaseIsStacksReadyForOperation(unittest.TestCase):
-    def test_a_isStacksReadyForOperation_given_1_multiply_2_token_is_minus_3_expect_yes(self):
+    def test_a_isStacksReadyForOperation_given_1_multiply_2_token_is_minus_expect_yes(self):
         expressionList = ["1", "*", "2", "-", "3"]  # The function uses next character to determine affix type
         operandStack = []
         operatorStack = []
@@ -364,7 +364,7 @@ class TestCaseIsStacksReadyForOperation(unittest.TestCase):
         # isStacksReadyForOperation(operandStack, operatorStack, token)
         self.assertEqual("YES", sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
 
-    def test_b_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_same_precedence(self):
+    def test_b_isStacksReadyForOperation_given_1_plus_2_token_is_minus_expect_same_precedence_and_ready(self):
         expressionList = ["1", "+", "2", "-", "3"]  # The function uses next character to determine affix type
         operandStack = []
         operatorStack = []
@@ -379,9 +379,25 @@ class TestCaseIsStacksReadyForOperation(unittest.TestCase):
         st.pushStack(operandStack, token3)
         token4 = sY.createToken(3, expressionList, token1)
         # isStacksReadyForOperation(operandStack, operatorStack, token)
-        self.assertEqual("SAME_PRECEDENCE", sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
+        self.assertEqual("SAME_PRECEDENCE_AND_READY", sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
 
-    def test_c_isStacksReadyForOperation_given_1_plus_in_stack_expect_no(self):
+    def test_c_isStacksReadyForOperation_given_1_plus_minus_3_token_is_minus_expect_same_precedence_but_xready(self):
+        expressionList = ["1", "+", "-", "3"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token1)
+        # isStacksReadyForOperation(operandStack, operatorStack, token)
+        self.assertEqual("SAME_PRECEDENCE_BUT_XREADY", sY.isStacksReadyForOperation(operandStack, operatorStack, token3))
+
+
+    def test_d_isStacksReadyForOperation_given_1_plus_in_stack_expect_no(self):
         expressionList = ["1", "+", "2"]  # The function uses next character to determine affix type
         operandStack = []
         operatorStack = []
