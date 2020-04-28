@@ -165,7 +165,7 @@ def isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
 def isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
     stackLen = len(operatorStack)
     # If the token is operator and the stack is not empty
-    if token.tokenType == "OPERATOR_TOKEN" and not stackLen == 0:
+    if (token.tokenType == "OPERATOR_TOKEN" and not stackLen == 0) or token.tokenType == "END_OF_OPERATION_TOKEN":
         # If token's precedence is higher
         if operatorStack[stackLen-1].precedence == token.precedence: # Same precedence
             return True

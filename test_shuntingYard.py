@@ -31,13 +31,24 @@ class TestCaseShuntingYard(unittest.TestCase):
         # shuntingYard(operandStack, operatorStack, expression)
         self.assertEqual(100.9 + 2.4 * 2, (sY.shuntingYard(operandStack, operatorStack, "100.9 + 2.4 * 2")).num)
 
-    def test_e_shuntingYard_given_100point9_divide_2point4_multiply_2_expect_correct(self):
+    def test_e_shuntingYard_given_100point9_multiply_2point4_plus_2_expect_correct(self):
+        operandStack = []   # Different order of precedence
+        operatorStack = []
+        # shuntingYard(operandStack, operatorStack, expression)
+        self.assertEqual(100.9 * 2.4 + 2, (sY.shuntingYard(operandStack, operatorStack, "100.9 * 2.4 + 2")).num)
+
+    def test_f_shuntingYard_given_100point9_divide_2point4_multiply_2_expect_correct(self):
         operandStack = []
         operatorStack = []
         # shuntingYard(operandStack, operatorStack, expression)
         self.assertEqual(100.9 / 2.4 * 2, (sY.shuntingYard(operandStack, operatorStack, "100.9 / 2.4 * 2")).num)
 
-
+    def test_g_shuntingYard_given_complex_expression_expect_correct(self):
+        operandStack = []
+        operatorStack = []
+        # shuntingYard(operandStack, operatorStack, expression)
+        self.assertEqual(1 / 2 * 3.3 - 1 * 1000.999999 / 22 - 2, (sY.shuntingYard(operandStack, operatorStack, "1 / 2 * 3.3 - 1 * 1000.999999 / 22 - 2 ")).num)
+# 1 / 2 * 3.3 - 1 * 1000.999999 / 22 + 2.2222 - 123123 / 7123123 * 123123"
 
 
 class TestCaseIsExpressionValid(unittest.TestCase):
@@ -167,6 +178,84 @@ class TestCasePushTokenToStack(unittest.TestCase):
         self.assertEqual(None, operatorStack[0].affix)
 
 
+class TestCaseCalculateAndReturnAnsToken(unittest.TestCase):
+    def test_a_calculateAndReturnAnsToken_given_2_plus_100_expect_return_token_with_num_and_correct_token_attributes(self):
+        expressionList = ["2", "+", "100"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token2)
+        st.pushStack(operandStack, token3)
+
+        # calculateAndReturnAnsToken(operandStack, operatorStack)
+        ansToken = sY.calculateAndReturnAnsToken(operandStack, operatorStack)
+        self.assertEqual(2+100, ansToken.num)
+        self.assertEqual("int", ansToken.numType)
+        self.assertEqual("OPERAND_TOKEN", ansToken.tokenType)
+
+    def test_b_calculateAndReturnAnsToken_given_10p2_minus_10p0_expect_return_token_with_correct_num__and_correct_token_attributes(self):
+        expressionList = ["10.2", "-", "10.0"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token2)
+        st.pushStack(operandStack, token3)
+
+        # calculateAndReturnAnsToken(operandStack, operatorStack)
+        ansToken = sY.calculateAndReturnAnsToken(operandStack, operatorStack)
+        self.assertEqual(10.2-10.0, ansToken.num)
+        self.assertEqual("float", ansToken.numType)
+        self.assertEqual("OPERAND_TOKEN", ansToken.tokenType)
+
+    def test_c_calculateAndReturnAnsToken_given_10p5_multiply_10_expect_return_token_with_correct_num__and_correct_token_attributes(self):
+        expressionList = ["10.5", "*", "10"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token2)
+        st.pushStack(operandStack, token3)
+
+        # calculateAndReturnAnsToken(operandStack, operatorStack)
+        ansToken = sY.calculateAndReturnAnsToken(operandStack, operatorStack)
+        self.assertEqual(10.5*10, ansToken.num)
+        self.assertEqual("int", ansToken.numType)
+        self.assertEqual("OPERAND_TOKEN", ansToken.tokenType)
+
+    def test_d_calculateAndReturnAnsToken_given_10p5_divide_5point1_expect_return_token_with_correct_num__and_correct_token_attributes(self):
+        expressionList = ["10.5", "/", 5.1]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token2)
+        st.pushStack(operandStack, token3)
+
+        # calculateAndReturnAnsToken(operandStack, operatorStack)
+        ansToken = sY.calculateAndReturnAnsToken(operandStack, operatorStack)
+        self.assertEqual(10.5/5.1, ansToken.num)
+        self.assertEqual("float", ansToken.numType)
+        self.assertEqual("OPERAND_TOKEN", ansToken.tokenType)
+
+
 class TestCaseCalculateAnsAndPushToOperandStack(unittest.TestCase):
     def test_a_calculateAnsAndPushToOperandStack_given_2_plus_2_expect_2_in_operand_stack(self):
         expressionList = ["2", "+", "2"]  # The function uses next character to determine affix type
@@ -257,8 +346,25 @@ class TestCaseIsNoOfTokensValidForOperation(unittest.TestCase):
         self.assertEqual(True, sY.isNoOfTokensValidForOperation(operandStack, operatorStack))
 
 
-"""class TestCaseIsStacksReadyForOperation(unittest.TestCase):
-    def test_a_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_true(self):
+class TestCaseIsStacksReadyForOperation(unittest.TestCase):
+    def test_a_isStacksReadyForOperation_given_1_multiply_2_token_is_minus_3_expect_yes(self):
+        expressionList = ["1", "*", "2", "-", "3"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        st.pushStack(operatorStack, token2)
+        token3 = sY.createToken(2, expressionList, token1)
+        st.pushStack(operandStack, token3)
+        token4 = sY.createToken(3, expressionList, token1)
+        # isStacksReadyForOperation(operandStack, operatorStack, token)
+        self.assertEqual("YES", sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
+
+    def test_b_isStacksReadyForOperation_given_1_plus_2_token_is_minus_3_expect_same_precedence(self):
         expressionList = ["1", "+", "2", "-", "3"]  # The function uses next character to determine affix type
         operandStack = []
         operatorStack = []
@@ -269,12 +375,25 @@ class TestCaseIsNoOfTokensValidForOperation(unittest.TestCase):
         st.pushStack(operandStack, token1)
         token2 = sY.createToken(1, expressionList, token1)
         st.pushStack(operatorStack, token2)
-        token3 = sY.createToken(1, expressionList, token1)
+        token3 = sY.createToken(2, expressionList, token1)
         st.pushStack(operandStack, token3)
-        token4 = sY.createToken(1, expressionList, token1)
+        token4 = sY.createToken(3, expressionList, token1)
         # isStacksReadyForOperation(operandStack, operatorStack, token)
-        self.assertEqual(True, sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
-"""
+        self.assertEqual("SAME_PRECEDENCE", sY.isStacksReadyForOperation(operandStack, operatorStack, token4))
+
+    def test_c_isStacksReadyForOperation_given_1_plus_in_stack_expect_no(self):
+        expressionList = ["1", "+", "2"]  # The function uses next character to determine affix type
+        operandStack = []
+        operatorStack = []
+
+        # createToken(listIndex, expressionList, previousToken)
+        token1 = sY.createToken(0, expressionList, None)
+        # pushStack(stack, data)
+        st.pushStack(operandStack, token1)
+        token2 = sY.createToken(1, expressionList, token1)
+        # isStacksReadyForOperation(operandStack, operatorStack, token)
+        self.assertEqual("NO", sY.isStacksReadyForOperation(operandStack, operatorStack, token2))
+
 
 
 if __name__ == '__main__':

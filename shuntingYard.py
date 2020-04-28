@@ -29,13 +29,55 @@ def shuntingYard(operandStack, operatorStack, expression):
             previousToken = token
 
         elif token.tokenType == "OPERATOR_TOKEN": # If the token type is operator
+            if isStacksReadyForOperation(operandStack, operatorStack, token) == "NO":
+                pushTokenToStack(token, operandStack, operatorStack)
+                previousToken = token
+
+            while isStacksReadyForOperation(operandStack, operatorStack, token) == "YES":
+                calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+                pushTokenToStack(token, operandStack, operatorStack)
+                previousToken = token
+            while isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE":
+                previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
+
+
+        else:
+            calculateAnsAndPushToOperandStack(operandStack, operatorStack)
+            expressionListLength += 1  # To offset the decrement later
+        listIndex += 1
+        expressionListLength -= 1
+
+        if expressionListLength == 0 and len(operatorStack) == 0:
+            endOfOperationFlag = True
+
+    return st.popStack(operandStack)
+"""
+def shuntingYard(operandStack, operatorStack, expression):
+    if not sI.isAlphaInStr(expression):  # If there are alphabet in str, return the call
+        # expression = sI.addSpaceBetweenCharacters(expression)  # Add space between character for splitting
+        expressionList = expression.split()
+        expressionListLength = len(expressionList)
+        listIndex = 0
+        previousToken = None
+        endOfOperationFlag = False
+
+    while not isOperationCompleted(expressionListLength, endOfOperationFlag):
+        if expressionListLength != 0: token = createToken(listIndex, expressionList, previousToken)
+        else: token.tokenType = "END_OF_OPERATION_TOKEN"
+
+        if token.tokenType == "OPERAND_TOKEN":  # Directly push into the operand stack
+            pushTokenToStack(token, operandStack, operatorStack)
+            previousToken = token
+
+        elif token.tokenType == "OPERATOR_TOKEN": # If the token type is operator
             if len(operatorStack) == 0: # If the operator stack is empty then push to stack directly
                 pushTokenToStack(token, operandStack, operatorStack)
                 previousToken = token
             elif operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
                 if isNoOfTokensValidForOperation(operandStack, operatorStack):
                     calculateAnsAndPushToOperandStack(operandStack, operatorStack)
-                    previousToken = operandStack[len(operatorStack)-1]
+                    pushTokenToStack(token, operandStack, operatorStack)
+                    previousToken = token
                     if expressionListLength == 0 and len(operatorStack) == 0:
                         endOfOperationFlag = True
 
@@ -46,6 +88,9 @@ def shuntingYard(operandStack, operatorStack, expression):
                 pushTokenToStack(token, operandStack, operatorStack)
                 previousToken = token
         else:
+            #if operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
+            #    previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
+            #else:
             calculateAnsAndPushToOperandStack(operandStack, operatorStack)
             if expressionListLength == 0 and len(operatorStack) == 0:
                 endOfOperationFlag = True
@@ -54,6 +99,9 @@ def shuntingYard(operandStack, operatorStack, expression):
         expressionListLength -= 1
 
     return st.popStack(operandStack)
+
+"""
+
 
 
 # Desc: Verify whether the operation is completed
@@ -152,16 +200,23 @@ def pushTokenToStack(token, operandStack, operatorStack):
         st.pushStack(operandStack, token)
 
 
-# Desc: Calculate operand with operator in respective stack, then push back the operand answer
+# Desc: Calculate operand with operator in respective stack and return the answer token
 # Param: Operand stack, operator stack
 # Retval: Operand token (w/ calculated ans)
+def calculateAndReturnAnsToken(operandStack, operatorStack):
+    num2Token = st.popStack(operandStack)   # Pop the second operand for calculation (FILO)
+    num1Token = st.popStack(operandStack)   # Pop the first operand for calculation (FILO)
+    operator = st.popStack(operatorStack)   # Pop the operator for calculation
+    ans = ar.calculationBasedOnOperator(num1Token.num, num2Token.num, operator.symbol) # Get the calculated ans
+    token = operandT.createOperandToken(sI.formatNumber(ans)) # Create the operand token based on calculated ans
+    return token
+
+
+# Desc: Calculate operand with operator in respective stack, then push back the operand answer
+# Param: Operand stack, operator stack
+# Retval: None
 def calculateAnsAndPushToOperandStack(operandStack, operatorStack):
-    num2Token = st.popStack(operandStack)
-    num1Token = st.popStack(operandStack)
-    operator = st.popStack(operatorStack)
-    ans = ar.calculationBasedOnOperator(num1Token.num, num2Token.num, operator.symbol)
-    token = operandT.createOperandToken(sI.formatNumber(ans))
-    st.pushStack(operandStack, token)
+    st.pushStack(operandStack, calculateAndReturnAnsToken(operandStack, operatorStack))
 
 
 # Desc: Check if number of tokens in respective stack is enough for operation
@@ -188,13 +243,26 @@ def handleSameAssociativityAndReturnToken(operandStack, operatorStack, token):
 
     return token
 
+
+# Desc: Perform the operations when all the token are pushed
+# Param: Operand stack, operator stack
+# Retval: Operated token
+def operateAfterAllTokenPushed(operandStack, operatorStack):
+    sizeOfOperatorStack = len(operatorStack)
+    
+
 # Desc: Check if the tokens in respective stack is ready for operation
 #       Check for no of tokens and operator precedence
 # Param: Operand stack, operator stack, token
-# Retval: True/ False
-# def isStacksReadyForOperation(operandStack, operatorStack, token):
-#    if isNoOfTokensValidForOperation(operandStack, operatorStack) and \
-#            operatorT.isOperatorInStackHigherPrecedence(operatorStack, token):
-#        return True
-#    else:
-#        return False
+# Retval: YES, NO, SAME_PRECEDENCE
+def isStacksReadyForOperation(operandStack, operatorStack, token):
+    if isNoOfTokensValidForOperation(operandStack, operatorStack) and \
+            operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
+       return "YES"
+
+    elif isNoOfTokensValidForOperation(operandStack, operatorStack) and \
+            operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
+       return "SAME_PRECEDENCE"
+
+    else:
+        return "NO"
