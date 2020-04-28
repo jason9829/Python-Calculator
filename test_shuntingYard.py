@@ -88,6 +88,7 @@ class TestCaseCreateToken(unittest.TestCase):
         self.assertEqual(1, tokenCreated.num)    # First token so index is 0
         self.assertEqual("int", tokenCreated.numType)
         self.assertEqual("OPERAND_TOKEN", tokenCreated.tokenType)
+        self.assertEqual(0, tokenCreated.tokenId)
 
 
 class TestCaseCreateAndPushTokenToStack(unittest.TestCase):

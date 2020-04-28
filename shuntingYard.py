@@ -19,26 +19,38 @@ def shuntingYard(operandStack, operatorStack, expression):
         listIndex = 0
         previousToken = None
         endOfOperationFlag = False
+        tokenPushedFlag = False
 
     while not isOperationCompleted(expressionListLength, endOfOperationFlag):
-        if expressionListLength != 0: token = createToken(listIndex, expressionList, previousToken)
+        if expressionListLength != 0:
+            token = createToken(listIndex, expressionList, previousToken)
+            tokenPushedFlag = False
+
         else: token.tokenType = "END_OF_OPERATION_TOKEN"
 
         if token.tokenType == "OPERAND_TOKEN":  # Directly push into the operand stack
             pushTokenToStack(token, operandStack, operatorStack)
+            tokenPushedFlag = True
             previousToken = token
 
         elif token.tokenType == "OPERATOR_TOKEN": # If the token type is operator
             if isStacksReadyForOperation(operandStack, operatorStack, token) == "NO":
                 pushTokenToStack(token, operandStack, operatorStack)
+                tokenPushedFlag = True
                 previousToken = token
 
             while isStacksReadyForOperation(operandStack, operatorStack, token) == "YES":
                 calculateAnsAndPushToOperandStack(operandStack, operatorStack)
                 pushTokenToStack(token, operandStack, operatorStack)
+                tokenPushedFlag = True
                 previousToken = token
-            while isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE":
+            while isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE_AND_READY":
                 previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
+                tokenPushedFlag = True
+
+            while not tokenPushedFlag and isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE_BUT_XREADY":
+                token = createToken(listIndex, expressionList, previousToken)
+                tokenPushedFlag = False
 
 
         else:
@@ -186,6 +198,8 @@ def createToken(listIndex, expressionList, previousToken):
         token = operatorT.createOperatorToken(operatorT.getOperatorStrAffix(getCharFromToken(previousToken),
                                                                             expressionList[listIndex + 1],
                                                                             currentChar))
+
+    token.tokenId = listIndex
     return token
 
 

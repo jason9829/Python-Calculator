@@ -9,7 +9,7 @@ class OperatorToken:
         self.precedence = None
         self.affix = None
         self.tokenType = None
-
+        self.tokenId = None
 
 # Ref: https://en.cppreference.com/w/c/language/operator_precedence
 #      https://github.com/jason9829/ShuntingYard/blob/master/src/OperatorPrecedence_wTable.c

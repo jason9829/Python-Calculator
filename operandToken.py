@@ -6,7 +6,7 @@ class OperandToken:
         self.num = None
         self.numType = None
         self.tokenType = None
-
+        self.tokenId = None
 
 # Desc: Determine whether the number is int/ float
 # Param: Number (value), won't raise error if it's not number (caller need to raise the exception)
