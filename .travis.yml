@@ -1,2 +1,7 @@
-script: 
-  - "python test_arithmetic.py test_operandToken.py test_operatorToken.py test_shuntingYard.py test_stack test_stringInterpreter.py"
+language: python
+script: python test_arithmetic.py	
+script: python test_operandToken.py	
+script: python test_operatorToken.py	
+script: python test_shuntingYard.py	
+script: python test_stack	
+script: python test_stringInterpreter.py
