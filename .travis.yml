@@ -1,8 +1,3 @@
 language: python
 script: python test_arithmetic.py
-        python test_operandToken.py
-        python test_operatorToken.py
-        python test_shuntingYard.py
-        python test_stack
-        python test_stringInterpreter.py
 
