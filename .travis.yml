@@ -1,7 +1,2 @@
-script: >
-      python test_arithmetic.py
-      python test_operandToken.py
-      python test_operatorToken.py
-      python test_shuntingYard.py
-      python test_stack
-      python test_stringInterpreter.py
+script: 
+  - "python test_arithmetic.py test_operandToken.py test_operatorToken.py test_shuntingYard.py test_stack test_stringInterpreter.py"
