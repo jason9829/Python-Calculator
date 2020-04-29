@@ -19,40 +19,36 @@ def shuntingYard(operandStack, operatorStack, expression):
         listIndex = 0
         previousToken = None
         endOfOperationFlag = False
-        tokenPushedFlag = False
+        isTokenPushedFlag = False
 
     while not isOperationCompleted(expressionListLength, endOfOperationFlag):
-        if expressionListLength != 0:
+        if expressionListLength != 0:   # Create the token and set the flag
             token = createToken(listIndex, expressionList, previousToken)
-            tokenPushedFlag = False
-
-        else: token.tokenType = "END_OF_OPERATION_TOKEN"
+            isTokenPushedFlag = False
+        else: token.tokenType = "END_OF_OPERATION_TOKEN"  # Change the token type to stop the operation
 
         if token.tokenType == "OPERAND_TOKEN":  # Directly push into the operand stack
             pushTokenToStack(token, operandStack, operatorStack)
-            tokenPushedFlag = True
             previousToken = token
+            isTokenPushedFlag = True
 
         elif token.tokenType == "OPERATOR_TOKEN": # If the token type is operator
-            if isStacksReadyForOperation(operandStack, operatorStack, token) == "NO":
-                pushTokenToStack(token, operandStack, operatorStack)
-                tokenPushedFlag = True
-                previousToken = token
-
             while isStacksReadyForOperation(operandStack, operatorStack, token) == "YES":
                 calculateAnsAndPushToOperandStack(operandStack, operatorStack)
-                pushTokenToStack(token, operandStack, operatorStack)
-                tokenPushedFlag = True
-                previousToken = token
+
             while isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE_AND_READY":
                 previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
-                tokenPushedFlag = True
+                isTokenPushedFlag = True
 
-            while not tokenPushedFlag and isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE_BUT_XREADY":
-                token = createToken(listIndex, expressionList, previousToken)
-                tokenPushedFlag = False
+            if not isTokenPushedFlag and isStacksReadyForOperation(operandStack, operatorStack, token) == "SAME_PRECEDENCE_BUT_XREADY":
+                if len(operatorStack) > 1 and token.tokenId != operatorStack[len(operatorStack)-1].tokenId:
+                    previousToken = token
+                    token = createToken(listIndex, expressionList, previousToken)
 
 
+            if not isTokenPushedFlag:
+                pushTokenToStack(token, operandStack, operatorStack)
+                previousToken = token
         else:
             calculateAnsAndPushToOperandStack(operandStack, operatorStack)
             expressionListLength += 1  # To offset the decrement later
@@ -63,57 +59,6 @@ def shuntingYard(operandStack, operatorStack, expression):
             endOfOperationFlag = True
 
     return st.popStack(operandStack)
-"""
-def shuntingYard(operandStack, operatorStack, expression):
-    if not sI.isAlphaInStr(expression):  # If there are alphabet in str, return the call
-        # expression = sI.addSpaceBetweenCharacters(expression)  # Add space between character for splitting
-        expressionList = expression.split()
-        expressionListLength = len(expressionList)
-        listIndex = 0
-        previousToken = None
-        endOfOperationFlag = False
-
-    while not isOperationCompleted(expressionListLength, endOfOperationFlag):
-        if expressionListLength != 0: token = createToken(listIndex, expressionList, previousToken)
-        else: token.tokenType = "END_OF_OPERATION_TOKEN"
-
-        if token.tokenType == "OPERAND_TOKEN":  # Directly push into the operand stack
-            pushTokenToStack(token, operandStack, operatorStack)
-            previousToken = token
-
-        elif token.tokenType == "OPERATOR_TOKEN": # If the token type is operator
-            if len(operatorStack) == 0: # If the operator stack is empty then push to stack directly
-                pushTokenToStack(token, operandStack, operatorStack)
-                previousToken = token
-            elif operatorT.isOperatorInStackHigherPrecedenceThanCurrentToken(operatorStack, token):
-                if isNoOfTokensValidForOperation(operandStack, operatorStack):
-                    calculateAnsAndPushToOperandStack(operandStack, operatorStack)
-                    pushTokenToStack(token, operandStack, operatorStack)
-                    previousToken = token
-                    if expressionListLength == 0 and len(operatorStack) == 0:
-                        endOfOperationFlag = True
-
-            elif operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
-                previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
-
-            else:
-                pushTokenToStack(token, operandStack, operatorStack)
-                previousToken = token
-        else:
-            #if operatorT.isOperatorInStackSamePrecedenceWithCurrentToken(operatorStack, token):
-            #    previousToken = handleSameAssociativityAndReturnToken(operandStack, operatorStack, token)
-            #else:
-            calculateAnsAndPushToOperandStack(operandStack, operatorStack)
-            if expressionListLength == 0 and len(operatorStack) == 0:
-                endOfOperationFlag = True
-            expressionListLength += 1 # To offset the decrement later
-        listIndex += 1
-        expressionListLength -= 1
-
-    return st.popStack(operandStack)
-
-"""
-
 
 
 # Desc: Verify whether the operation is completed
@@ -127,22 +72,6 @@ def isOperationCompleted(expressionListLength, endOfOperationFlag):
             return False
     else:
         return False
-
-
-# Desc: Verify the operator in the str
-# Param: Str (non alphabet)
-# Retval: True/ False
-"""
-def isOperatorInExpressionValid(expression):
-    FIRST_CHAR_FLAG = True
-    expressionLen = len(expression)
-    
-    while expressionLen != 0:   # Loop until end of str
-        if ()
-        expressionLen -= 1
-        FIRST_CHAR_FLAG = False
-
-"""
 
 
 # Desc: Verify the expression before processing it
