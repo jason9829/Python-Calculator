@@ -1,5 +1,4 @@
-script:
-    - >
+script: >
       python test_arithmetic.py
       python test_operandToken.py
       python test_operatorToken.py
