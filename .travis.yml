@@ -1,7 +1,8 @@
 language: python
-script: python test_arithmetic.py	
-script: python test_operandToken.py	
-script: python test_operatorToken.py	
-script: python test_shuntingYard.py	
-script: python test_stack	
-script: python test_stringInterpreter.py
+script:
+  - python test_arithmetic.py
+  - python test_operandToken.py
+  - python test_operatorToken.py
+  - python test_shuntingYard.py
+  - python test_stack
+  - python test_stringInterpreter.py
