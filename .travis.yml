@@ -4,5 +4,5 @@ script:
   - python test_operandToken.py
   - python test_operatorToken.py
   - python test_shuntingYard.py
-  - python test_stack
+  - python test_stack.py
   - python test_stringInterpreter.py
